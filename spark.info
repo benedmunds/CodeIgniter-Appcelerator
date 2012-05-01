@@ -1,5 +1,7 @@
 name: appcelerator
 
-version: 1.0.1
+version: 1.0.2
 
 compatibility: 2.0.2
+
+tags: ["sdk", "api", "appcelerator"]
