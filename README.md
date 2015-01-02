@@ -4,49 +4,49 @@ A CodeIgniter library that is a simple port of the Appcelerator ACS Javascript S
 ##Install
 Install the library using sparks
 
-	$ php tools/spark install appcelerator
-
+```bash
+$ php tools/spark install appcelerator
+```
 
 ##Usage
 In your controller simply load the library, set your login info, and call the API
   
-	protected $app_key  = '123';
-	protected $email    = 'ben.edmunds@gmail.com';
-	protected $password = '12345678';
+protected $app_key  = '123';
+protected $email    = 'ben.edmunds@gmail.com';
+protected $password = '12345678';
 
-	function statuses() 
-	{
-		$this->load->library('appcelerator');
+```php
+function statuses() 
+{
+	$this->load->library('appcelerator');
 
-		$this->appcelerator->init($this->app_key, $this->email, $this->password);
+	$this->appcelerator->init($this->app_key, $this->email, $this->password);
 
-		$data = array(
-			'where' => json_encode(array('user_id' => '4f9eb57a0020440def0056d3')),	
-		);
+	$data = array(
+		'where' => json_encode(array('user_id' => '4f9eb57a0020440def0056d3')),	
+	);
 
-		$output = $this->appcelerator->send_request('statuses/query.json', 'GET', $data);
+	$output = $this->appcelerator->send_request('statuses/query.json', 'GET', $data);
 
-		print_r($output);
-		exit;
-	}
+	print_r($output);
+	exit;
+}
 
+function create_status() 
+{
+	$this->load->library('appcelerator');
 
-	function create_status() 
-	{
-		$this->load->library('appcelerator');
+	$this->appcelerator->init($this->app_key, $this->email, $this->password);
 
-		$this->appcelerator->init($this->app_key, $this->email, $this->password);
+	$data = array(
+		'message' => 'api test message',	
+	);
 
-		$data = array(
-			'message' => 'api test message',	
-		);
-
-		$output = $this->appcelerator->send_request('statuses/create.json', 'POST', $data);
-
-		var_dump($output);
-		exit;
-	}
-
+	$output = $this->appcelerator->send_request('statuses/create.json', 'POST', $data);
+	var_dump($output);
+	exit;
+}
+```
 
 See [the Appcelerator documentation](http://cloud.appcelerator.com/docs/api/v1/statuses/info) for API details.
 
